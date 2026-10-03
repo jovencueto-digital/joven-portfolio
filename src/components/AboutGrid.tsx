@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { ArrowUpRight, MapPin } from '@/components/slab'
+import { MapPin } from '@/components/slab'
 import { profile } from '@/data/profile'
 
 /**
@@ -14,20 +14,18 @@ import { profile } from '@/data/profile'
  * visual. Swap the marks below for your own (any square SVG/PNG in public/).
  */
 
-const N8N = { src: '/icons/ai/n8n.svg', name: 'n8n' }
-const ZAPIER = { src: '/icons/ai/zapier.svg', name: 'Zapier' }
-const DOCKER = { src: '/icons/ai/docker.svg', name: 'Docker' }
-const CLAUDE = { src: '/icons/ai/claude-color.svg', name: 'Claude' }
-const CODEX = { src: '/icons/ai/codex.svg', name: 'Codex' }
-const GLM = { src: '/icons/ai/zhipu.svg', name: 'GLM' }
-const QWEN = { src: '/icons/ai/qwen.svg', name: 'Qwen' }
-const HERMES = { src: '/icons/ai/hermes.svg', name: 'Hermes' }
-const NAMECHEAP = { src: '/icons/ai/namecheap.svg', name: 'Namecheap' }
-const CLOUDFLARE = { src: '/icons/ai/cloudflare.svg', name: 'Cloudflare' }
-const GITHUB = { src: '/icons/ai/github.svg', name: 'GitHub' }
-const GWS = { src: '/icons/googleworkspace.svg', name: 'Google Workspace' }
-const SLACK = { src: '/icons/ai/slack-color.svg', name: 'Slack' }
-const FIREFLIES = { src: '/icons/ai/fireflies.png', name: 'Fireflies' }
+const I = (f: string, name: string) => ({ src: `/icons/${f}`, name })
+const META = I('meta-color.svg', 'Meta Ads')
+const GADS = I('googleads-color.svg', 'Google Ads')
+const SEMRUSH = I('semrush-color.svg', 'Semrush')
+const AHREFS = I('ahrefs-mark.svg', 'Ahrefs')
+const FROG = I('screamingfrog-mark.svg', 'Screaming Frog')
+const N8N = I('ai/n8n.svg', 'n8n')
+const CLAUDE = I('ai/claude-color.svg', 'Claude')
+const GHL = I('gohighlevel.png', 'GoHighLevel')
+const SF = I('salesforce-mark.svg', 'Salesforce')
+const HUBSPOT = I('hubspot-color.svg', 'HubSpot')
+const MONDAY = I('monday-mark.svg', 'Monday.com')
 
 type Capability = {
   index: string
@@ -36,26 +34,10 @@ type Capability = {
 }
 
 const CAPABILITIES: Capability[] = [
-  {
-    index: '01',
-    title: 'Your role 1',
-    marks: [N8N, ZAPIER, DOCKER],
-  },
-  {
-    index: '02',
-    title: 'Your role 2',
-    marks: [CLAUDE, CODEX, GLM, QWEN, HERMES],
-  },
-  {
-    index: '03',
-    title: 'Your role 3',
-    marks: [CLAUDE, CODEX, NAMECHEAP, CLOUDFLARE, GITHUB],
-  },
-  {
-    index: '04',
-    title: 'Your role 4',
-    marks: [GWS, SLACK, FIREFLIES],
-  },
+  { index: '01', title: 'Paid ads that bring in leads', marks: [META, GADS] },
+  { index: '02', title: 'SEO, AEO and GEO', marks: [SEMRUSH, AHREFS, FROG] },
+  { index: '03', title: 'AI automation and agents', marks: [N8N, CLAUDE, GHL] },
+  { index: '04', title: 'CRM and sales pipelines', marks: [GHL, SF, HUBSPOT, MONDAY] },
 ]
 
 export default function AboutGrid() {
@@ -67,24 +49,23 @@ export default function AboutGrid() {
           {`Hi, I’m ${profile.firstName}.`}
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one line on what you do.
+          Digital marketing and growth strategist. Nine years, B2B and B2C, US and Asia.
         </p>
       </header>
 
       <div className="home__glass agrid__glass">
         <div className="agrid__copy">
           <p className="agrid__lead">
-            Your big statement goes here, in one or two lines.
-            <span> A softer second half that finishes the thought.</span>
+            Leads are easy. Revenue is the job.
+            <span> I build marketing that hands sales a deal, not just a name.</span>
           </p>
 
           <p className="agrid__note">
-            <strong>Your company name</strong>, and{' '}
-            <a className="agrid__link" href="#">
-              your product
-            </a>{' '}
-            - PLACEHOLDER - tell me what to put here: two sentences on your company, what
-            you sell or build, and who it is for.
+            <strong>Vice President, Blue Harbor Group</strong> - Blue Harbor Capital Holdings and
+            Blue Harbor Enterprise. I rose from Assistant Marketing Manager to Chief Sales Officer in
+            six months, then to VP, and I lead marketing and sales as one revenue team. Before that I
+            ran marketing as a Marketing Director, CMO and SEO lead for brands in e-commerce,
+            fintech, energy and entertainment.
           </p>
 
           <ul className="agrid__caps" role="list">
@@ -113,11 +94,11 @@ export default function AboutGrid() {
           <div className="agrid__bar">
             <span className="agrid__cell">
               <span className="agrid__cell-mark agrid__cell-mark--img">
-                <img src="/placeholders/badge.svg" alt="" loading="lazy" decoding="async" />
+                <img src="/icons/googleads-color.svg" alt="" loading="lazy" decoding="async" />
               </span>
               <span className="agrid__cell-copy">
-                <span className="agrid__cell-title">Credential name</span>
-                <span className="agrid__cell-meta">Credential ID</span>
+                <span className="agrid__cell-title">Google Ads & Analytics</span>
+                <span className="agrid__cell-meta">Certified since 2017</span>
               </span>
             </span>
 
@@ -127,20 +108,19 @@ export default function AboutGrid() {
               </span>
               <span className="agrid__cell-copy">
                 <span className="agrid__cell-title">{profile.location}</span>
-                <span className="agrid__cell-meta">Timezone · working hours</span>
+                <span className="agrid__cell-meta">GMT+8 · works with US teams</span>
               </span>
             </span>
 
-            <a className="agrid__cell agrid__cell--wide" href="#">
+            <span className="agrid__cell agrid__cell--wide">
               <span className="agrid__cell-mark agrid__cell-mark--plain">
-                <img src="/placeholders/logo.svg" alt="" loading="lazy" decoding="async" />
+                <img src="/photos/medal.svg" alt="" loading="lazy" decoding="async" />
               </span>
               <span className="agrid__cell-copy">
-                <span className="agrid__cell-title">Community or affiliation</span>
-                <span className="agrid__cell-meta">Your role there</span>
+                <span className="agrid__cell-title">Employee of the Year 2025 · Blue Harbor Media</span>
+                <span className="agrid__cell-meta">BBA, De La Salle-College of Saint Benilde</span>
               </span>
-              <ArrowUpRight className="agrid__cell-go" size={15} weight="bold" aria-hidden="true" />
-            </a>
+            </span>
           </div>
         </div>
 

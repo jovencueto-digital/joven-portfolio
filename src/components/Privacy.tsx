@@ -23,20 +23,20 @@ export default function Privacy() {
         </button>
 
         <h1 className="legal-page__title">Privacy Policy</h1>
-        <p className="legal-page__updated">Last updated: PLACEHOLDER date</p>
+        <p className="legal-page__updated">Last updated: October 3, 2026</p>
 
         <div className="legal-page__body">
           <h2>Who this covers</h2>
-          <p>PLACEHOLDER - tell me what to put here: who runs this site and which sites this policy applies to.</p>
+          <p>This site is the personal portfolio of Joven Cueto. This policy covers this site only.</p>
 
           <h2>What is collected</h2>
-          <p>PLACEHOLDER - tell me what to put here: what the contact form and any analytics collect.</p>
+          <p>The contact form asks for your name, email address and message. It does not use tracking cookies or third-party analytics.</p>
 
           <h2>How it is used</h2>
-          <p>PLACEHOLDER - tell me what to put here: what you do with that data and who else sees it.</p>
+          <p>Your details are used only to reply to your enquiry. They are not sold or shared with anyone else.</p>
 
           <h2>How long it is kept</h2>
-          <p>PLACEHOLDER - tell me what to put here: retention periods and how to ask for deletion.</p>
+          <p>Messages are kept only as long as needed to respond and follow up. To have your details deleted, email joveninabox@gmail.com.</p>
 
           <h2>Contact</h2>
           <p>

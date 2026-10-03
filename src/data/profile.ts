@@ -2,7 +2,7 @@
  * YOUR IDENTITY - start here.
  *
  * Everything that says who you are lives in this file: name, handle, photo,
- * socials, email and the Home headline. Every value below is a PLACEHOLDER.
+ * socials, email and the Home headline.
  * Replace the text, or hand this file to your AI assistant and tell it what
  * to put in each field.
  *
@@ -46,7 +46,7 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  name: 'Joven Cueto, MSBA',
+  name: 'Joven Cueto',
   firstName: 'Joven',
   handle: '@jovencueto',
   role: 'Vice President, Blue Harbor Group',

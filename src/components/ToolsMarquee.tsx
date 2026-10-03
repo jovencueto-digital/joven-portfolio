@@ -4,7 +4,6 @@ import { useMemo } from 'react'
  * ToolsMarquee
  *
  * Horizontally scrolling strip of brand logos + labels for the tools you work with.
- * PLACEHOLDER - swap the list below for your own tools (icons live in public/icons/).
  * The strip lives on the cream shader page, NOT inside a dark section.
  *
  * Implementation notes:
@@ -38,17 +37,22 @@ type Tool = {
 }
 
 export const tools: Tool[] = [
-  { name: 'Claude Code',          iconPath: '/icons/claude-code-logo.png' },
-  { name: 'Codex',                iconPath: '/icons/codex.svg',           color: '#000000' },
-  { name: 'Cursor',               iconPath: '/icons/cursor.svg',          color: '#0F172A' },
-  { name: 'Hermes AI',            iconPath: '/icons/nousresearch.svg',    color: '#18181B' },
-  { name: 'VS Code',              iconPath: '/icons/vscode.svg' },
-  { name: 'GoHighLevel',          iconPath: '/icons/gohighlevel.png' },
-  { name: 'Lightspeed X-Series',  iconPath: '/icons/lightspeed.png' },
-  { name: 'Google Workspace',     iconPath: '/icons/googleworkspace.svg' },
-  { name: 'Zendesk',              iconPath: '/icons/zendesk.svg',         color: '#03363D' },
-  { name: 'Intercom',             iconPath: '/icons/intercom.svg',        color: '#1F8DED' },
-  { name: 'Slack',                iconPath: '/icons/slack.svg',           color: '#611F69' },
+  { name: 'GoHighLevel',      iconPath: '/icons/gohighlevel.png' },
+  { name: 'Salesforce',       iconPath: '/icons/salesforce-mark.svg' },
+  { name: 'HubSpot',          iconPath: '/icons/hubspot.svg',     color: '#FF7A59' },
+  { name: 'Meta Ads',         iconPath: '/icons/meta.svg',        color: '#0467DF' },
+  { name: 'Google Ads',       iconPath: '/icons/googleads.svg',   color: '#4285F4' },
+  { name: 'WordPress',        iconPath: '/icons/wordpress.svg',   color: '#21759B' },
+  { name: 'Wix',              iconPath: '/icons/wix.svg',         color: '#0C0C0C' },
+  { name: 'Semrush',          iconPath: '/icons/semrush.svg',     color: '#FF642D' },
+  { name: 'Ahrefs',           iconPath: '/icons/ahrefs-mark.svg' },
+  { name: 'Screaming Frog',   iconPath: '/icons/screamingfrog-mark.svg' },
+  { name: 'n8n',              iconPath: '/icons/n8n.svg',         color: '#EA4B71' },
+  { name: 'Claude',           iconPath: '/icons/claude.svg',      color: '#D97757' },
+  { name: 'OpenAI',           iconPath: '/icons/openai.svg',      color: '#000000' },
+  { name: 'Mailchimp',        iconPath: '/icons/mailchimp.svg',   color: '#241C15' },
+  { name: 'ActiveCampaign',   iconPath: '/icons/activecampaign-mark.svg' },
+  { name: 'Monday.com',       iconPath: '/icons/monday-mark.svg' },
 ]
 
 export default function ToolsMarquee() {

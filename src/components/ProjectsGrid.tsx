@@ -1,11 +1,8 @@
 import { Fragment, useCallback, useEffect, useRef, useState, type ComponentType, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { ArrowUpRight, X, Ticket, Robot, FlowArrow, CursorClick } from '@/components/slab'
-import { FlowIcon, PlanIcon, GlobeIcon, SparkIcon, DeviceIcon } from './ProjectIcons'
-import { AutomationsPanel, PlanPanel, TicketingPanel, FrameworkPanel, WorkflowPanel, BarrelPanel, AIWindow, AppsWindow } from './ProjectPanels'
-import { gymFunnel, bookingFunnel, websiteFunnel, type Funnel } from '@/data/funnels'
-import { mobileApps } from '@/data/projects'
-import { aiStack, type StackNode } from '@/data/ai-stack'
+import { ArrowUpRight, X, CursorClick, ChartLineUp, AddressBook, Robot, MagnifyingGlass, Phone, FlowArrow, Brain, Lightning, ChatCircleDots, Funnel as FunnelIcon } from '@/components/slab'
+import CaseStudyPanel from './CaseStudy'
+import { cases, caseById, type CaseStudy } from '@/data/cases'
 import { useIsPhone } from '@/hooks/useMediaQuery'
 
 /**
@@ -35,58 +32,57 @@ type Project = {
   cat: Cat
 }
 
-type Cat = 'work' | 'sites' | 'apps' | 'ai'
+type Cat = 'ads' | 'crm' | 'ai'
 const FILTERS: { key: Cat | 'all'; label: string }[] = [
   { key: 'all', label: 'All' },
-  { key: 'work', label: 'Work' },
-  { key: 'sites', label: 'Sites' },
-  { key: 'apps', label: 'Apps' },
+  { key: 'ads', label: 'Ads' },
+  { key: 'crm', label: 'CRM' },
   { key: 'ai', label: 'AI' },
 ]
 
-/** Example tool marks, from public/icons. Swap for what you build with. */
-const GHL = '/icons/gohighlevel.png'
-const CLAUDE_CODE = '/icons/claude-code-logo.png'
-const CODEX = '/icons/ai/codex.svg'
-const HERMES = '/icons/ai/hermes.svg'
-const PLAY = '/icons/ai/googleplay.svg'
-const CHROME = '/icons/ai/googlechrome.svg'
-const EXPO = '/icons/ai/expo.svg'
+/** A dialog with one tab per case study. */
+function CaseTabs({ ids }: { ids: string[] }) {
+  const list = ids.map(caseById)
+  const [active, setActive] = useState(list[0].id)
+  const c = list.find((x) => x.id === active)!
+  return (
+    <div className="ppanel" style={{ gap: 12 }}>
+      <div className="ppanel__tabs" role="tablist">
+        {list.map((x) => (
+          <button key={x.id} type="button" role="tab" className="ppanel__tab" aria-selected={x.id === active} onClick={() => setActive(x.id)}>
+            {x.title}
+          </button>
+        ))}
+      </div>
+      <CaseStudyPanel c={c} />
+    </div>
+  )
+}
 
-const WF_SHOTS = ['project-1.jpg', 'project-2.jpg', 'project-3.jpg', 'project-4.jpg'].map(
-  (f) => `/placeholders/${f}`,
-)
+const one = (id: string) => () => <CaseStudyPanel c={caseById(id)} />
 
-const FUNNEL_SHOTS = [gymFunnel[0], bookingFunnel[0], websiteFunnel[0]].filter(Boolean)
-const thumbSrc = (f: Funnel) => `/${f.dir ?? 'funnels'}/thumbs/${f.file.replace('.html', '.jpeg')}`
+const ADS = cases.filter((c) => c.cat === 'ads').map((c) => c.id)
+const AI = cases.filter((c) => c.cat === 'ai').map((c) => c.id)
+const AdsPanel = () => <CaseTabs ids={ADS} />
+const AIPanel = () => <CaseTabs ids={AI} />
 
-const APP_SHOTS = [
-  ...mobileApps.map((a) => a.imageSrc).filter((s): s is string => !!s),
-  '/placeholders/extension-1.jpg',
-  '/placeholders/extension-2.jpg',
-]
-
-const BUILD_DESC = 'PLACEHOLDER - tell me what to put here: two lines on what this project is and the result it got.'
-
-/** The three featured builds: each its own card in the stack, each its own
- *  pop-up. */
-const BUILDS: Project[] = [
-  { id: 'ticketing', cat: 'work', index: '03', kicker: 'Placeholder category', title: 'Featured Project One', desc: BUILD_DESC, Icon: () => <Ticket size={20} weight="duotone" />, logos: [GHL], eyebrow: 'Featured build', Section: TicketingPanel, Preview: () => null },
-  { id: 'framework', cat: 'ai', index: '04', kicker: 'Placeholder category', title: 'Featured Project Two', desc: BUILD_DESC, Icon: () => <Robot size={20} weight="duotone" />, logos: [CLAUDE_CODE], eyebrow: 'Featured build', Section: FrameworkPanel, Preview: () => null },
-  { id: 'workflow', cat: 'ai', index: '05', kicker: 'Placeholder category', title: 'Featured Project Three', desc: BUILD_DESC, Icon: () => <FlowArrow size={20} weight="duotone" />, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Featured build', Section: WorkflowPanel, Preview: () => null },
-]
-
-const leaves = (n: StackNode): StackNode[] => (n.children?.length ? n.children.flatMap(leaves) : [n])
-const AI_LEAVES = leaves(aiStack)
+/** The three featured results: each its own card in the stack. */
+const FEATURED = ['meta-funding', 'gads-roas', 'meta-bh-capital']
+const BUILDS: Project[] = FEATURED.map((id, i) => {
+  const c: CaseStudy = caseById(id)
+  return { id: c.id, cat: c.cat, index: String(i + 3).padStart(2, '0'), kicker: c.kicker, title: c.title, desc: c.summary, Icon: () => <ChartLineUp size={20} weight="duotone" />, logos: c.logos, eyebrow: 'Featured result', Section: one(c.id), Preview: () => null }
+})
 
 /* ---------- Previews ---------- */
 
-function WorkflowsPreview() {
+const AD_SHOTS = ADS.flatMap((id) => caseById(id).shots.map((s) => s.src))
+
+function AdsPreview() {
   return (
     <div className="bento__media bento__reel" aria-hidden="true">
       <div className="bento__reel-track">
-        {[...WF_SHOTS, ...WF_SHOTS].map((src, i) => (
-          <span key={i} className="bento__shot">
+        {[...AD_SHOTS, ...AD_SHOTS].map((src, i) => (
+          <span key={i} className="bento__shot bento__shot--case">
             <img src={src} alt="" loading="lazy" decoding="async" />
           </span>
         ))}
@@ -95,47 +91,39 @@ function WorkflowsPreview() {
   )
 }
 
-/** A paper mock of the plan document, the way SamplePlan previews it. */
-function PlanPreview() {
+function ShotPreview({ src }: { src: string }) {
   return (
-    <div className="bento__media bento__doc" aria-hidden="true">
-      <span className="bento__doc-eyebrow">Placeholder document</span>
-      <span className="bento__doc-title">Your document title here.</span>
-      <span className="bento__doc-flow">
-        <i>Step</i>
-        <i>Step</i>
-        <i>Step?</i>
-        <i className="is-on">Result</i>
-      </span>
-      <span className="bento__doc-line" />
-      <span className="bento__doc-line bento__doc-line--short" />
+    <div className="bento__media bento__reel" aria-hidden="true">
+      <div className="bento__reel-track" style={{ animation: 'none' }}>
+        <span className="bento__shot bento__shot--case">
+          <img src={src} alt="" loading="lazy" decoding="async" />
+        </span>
+      </div>
     </div>
   )
 }
 
-/** The three builds as Open Builds rows: plate, eyebrow, title, arrow. */
-function FunnelsPreview() {
-  return (
-    <div className="bento__media bento__fan" aria-hidden="true">
-      {FUNNEL_SHOTS.map((f, i) => (
-        <span key={f.file} className="bento__photo bento__photo--page" style={{ ['--i' as string]: i }}>
-          <img src={thumbSrc(f)} alt="" loading="lazy" decoding="async" />
-        </span>
-      ))}
-    </div>
-  )
-}
+const AI_CHIPS = [
+  { name: 'AI voice agent', Icon: Phone },
+  { name: 'Lead routing', Icon: FlowArrow },
+  { name: 'n8n workflows', Icon: Lightning },
+  { name: 'Claude + OpenAI', Icon: Brain },
+  { name: 'Web chat widget', Icon: ChatCircleDots },
+  { name: 'Lead magnets', Icon: FunnelIcon },
+  { name: 'CRM automation', Icon: AddressBook },
+  { name: 'MCP integrations', Icon: Robot },
+]
 
 function AIPreview() {
-  const half = Math.ceil(AI_LEAVES.length / 2)
-  const rows = [AI_LEAVES.slice(0, half), AI_LEAVES.slice(half)]
+  const half = Math.ceil(AI_CHIPS.length / 2)
+  const rows = [AI_CHIPS.slice(0, half), AI_CHIPS.slice(half)]
   return (
     <div className="bento__media bento__chips" aria-hidden="true">
       {rows.map((row, r) => (
         <div key={r} className="bento__chip-row" data-dir={r ? 'right' : 'left'}>
           <div className="bento__chip-track">
             {[...row, ...row].map((n, i) => (
-              <span key={`${n.id}-${i}`} className="bento__chip" data-status={n.status}>
+              <span key={`${n.name}-${i}`} className="bento__chip" data-status="live">
                 <n.Icon size={15} weight="duotone" />
                 {n.name}
               </span>
@@ -147,26 +135,15 @@ function AIPreview() {
   )
 }
 
-function AppsPreview() {
-  return (
-    <div className="bento__media bento__reel bento__reel--row" aria-hidden="true">
-      <div className="bento__reel-track">
-        {[...APP_SHOTS, ...APP_SHOTS].map((src, i) => (
-          <span key={i} className="bento__shot bento__shot--app">
-            <img src={src} alt="" loading="lazy" decoding="async" />
-          </span>
-        ))}
-      </div>
-    </div>
-  )
-}
+const GHL = '/icons/gohighlevel.png'
+const N8N = '/icons/n8n.svg'
 
 const PROJECTS: Project[] = [
-  { id: 'workflows', cat: 'work', index: '01', title: 'Project Title', desc: 'PLACEHOLDER - tell me what to put here: what these screens show.', Icon: FlowIcon, logos: [GHL], eyebrow: 'Screenshots', Section: AutomationsPanel, span: 2, Preview: WorkflowsPreview },
-  { id: 'plan', cat: 'work', index: '02', title: 'Sample Document', desc: 'PLACEHOLDER - tell me what to put here: the document this opens.', Icon: PlanIcon, logos: [GHL], eyebrow: 'Sample document', Section: PlanPanel, Preview: PlanPreview },
-  { id: 'funnels', cat: 'sites', index: '06', title: 'Pages and sites', desc: 'PLACEHOLDER - the pages in this reel. Spin the reel.', Icon: GlobeIcon, logos: [GHL], eyebrow: 'Pages and sites', Section: BarrelPanel, Preview: FunnelsPreview },
-  { id: 'ai', cat: 'ai', index: '07', title: 'Your systems title here', desc: 'PLACEHOLDER - tell me what to put here: the systems you run.', Icon: SparkIcon, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Your systems', Section: AIWindow, Preview: AIPreview },
-  { id: 'apps', cat: 'apps', index: '08', title: 'Apps and tools', desc: 'PLACEHOLDER - tell me what to put here: the apps and tools you ship.', Icon: DeviceIcon, logos: [PLAY, EXPO, CHROME], eyebrow: 'Your apps', Section: AppsWindow, span: 2, Preview: AppsPreview },
+  { id: 'ads', cat: 'ads', index: '01', title: 'Paid ads results', desc: 'Meta and Google Ads campaigns: leads, ROAS and scale, straight from the ad accounts.', Icon: ChartLineUp, logos: ['/icons/meta.svg', '/icons/googleads.svg'], eyebrow: 'Ads', Section: AdsPanel, span: 2, Preview: AdsPreview },
+  { id: 'plan', cat: 'crm', index: '02', title: 'CRM & pipeline', desc: caseById('crm').summary, Icon: AddressBook, logos: [GHL], eyebrow: 'CRM', Section: one('crm'), Preview: () => <ShotPreview src="/work/crm-database.webp" /> },
+  { id: 'ai', cat: 'ai', index: '06', title: 'AI & automation', desc: 'Voice agents, self-routing lead magnets and CRM workflows that run without manual work.', Icon: Robot, logos: [GHL, N8N], eyebrow: 'AI systems', Section: AIPanel, Preview: AIPreview },
+  { id: 'workflow', cat: 'ai', index: '07', title: 'Self-routing lead magnet', desc: caseById('workflow').summary, Icon: FlowArrow, logos: [GHL], eyebrow: 'Automation', Section: one('workflow'), Preview: () => <ShotPreview src="/work/workflow-lead-magnet.webp" /> },
+  { id: 'gads', cat: 'ads', index: '08', title: 'Google Ads at scale', desc: caseById('gads-scale').summary, Icon: MagnifyingGlass, logos: ['/icons/googleads.svg'], eyebrow: 'Google Ads', Section: one('gads-scale'), span: 2, Preview: () => <ShotPreview src="/work/gads-scale.webp" /> },
 ]
 
 /** The icon tile, or the real marks stacked horizontally in its place. */
@@ -300,9 +277,9 @@ export default function ProjectsGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">Projects</span>
         <h1 className="pgrid__title" id="projects-title">
-          Your projects headline goes right here.
+          Real campaigns. Real numbers.
         </h1>
-        <p className="pgrid__lede">PLACEHOLDER - tell me what to put here: one line on the work below. Open a card to see it full size.</p>
+        <p className="pgrid__lede">Results from my ad accounts, CRMs and automations. Open a card to see the screenshots and what I did.</p>
       </header>
 
       {phone && (

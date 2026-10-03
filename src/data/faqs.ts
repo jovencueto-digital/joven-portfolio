@@ -9,22 +9,22 @@ export type QA = { q: string; a: string }
 export const FAQS: QA[] = [
   {
     q: 'What do you do?',
-    a: 'PLACEHOLDER - tell me what to put here: the kinds of work you take on, and who it is usually for.',
+    a: 'I build growth systems for B2B and B2C brands: Meta and Google Ads, SEO, AEO and GEO, AI automation, and CRM pipelines that hand qualified leads to sales.',
   },
   {
-    q: 'How fast can you start?',
-    a: 'PLACEHOLDER - tell me what to put here: your usual lead time for small fixes vs. larger projects, and your working hours.',
+    q: 'Who do you work with?',
+    a: 'Mostly US businesses in funding, finance, real estate, e-commerce and services, plus brands across Asia. If you sell something people search for, I can help.',
   },
   {
-    q: 'How much do you charge?',
-    a: 'PLACEHOLDER - tell me what to put here: how you price (hourly, per project, retainer) and how a quote is put together.',
+    q: 'How do you price your work?',
+    a: 'It depends on scope. Ads management, SEO and automation builds are quoted per project or as a monthly retainer once we have talked through your goals.',
   },
   {
     q: 'Where are you based?',
-    a: 'PLACEHOLDER - tell me what to put here: your location or timezone, and which client timezones you overlap with.',
+    a: 'Taguig City, Metro Manila (GMT+8). I work with US-based clients and teams across time zones.',
   },
   {
     q: 'What happens after I write?',
-    a: 'PLACEHOLDER - tell me what to put here: how fast you reply and what the next step looks like.',
+    a: 'I reply personally, then we set up a short call to look at your numbers and decide what to build first.',
   },
 ]
