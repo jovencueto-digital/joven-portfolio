@@ -113,9 +113,9 @@ const frag = `
     float line    = 1.0 - smoothstep(0.0, w, dist);
 
     // Theme colors (kept identical to v1 so the rest of the page does not shift).
-    vec3 bgLight   = vec3(0.957, 0.957, 0.929); // #F4F4ED cream
-    vec3 lineLight = vec3(0.46,  0.46,  0.46);  // soft neutral gray contour on cream
-    vec3 bgDark    = vec3(0.024, 0.047, 0.102); // #060C1A navy ink
+    vec3 bgLight   = vec3(0.953, 0.973, 0.984); // #F3F8FB cream
+    vec3 lineLight = vec3(0.30,  0.52,  0.60);  // soft neutral gray contour on cream
+    vec3 bgDark    = vec3(0.020, 0.075, 0.149); // #051326 navy ink
     vec3 lineDark  = vec3(1.0,   1.0,   1.0);   // solid white on navy (black would be invisible)
 
     vec3 bg      = mix(bgLight, bgDark, uDarkMix);

@@ -10,7 +10,7 @@
  * other files in src/data/ and at the top of each view component.
  */
 
-import { Briefcase, SealCheck, Clock, type Icon } from '@/components/slab'
+import { Briefcase, Robot, MagnifyingGlass, type Icon } from '@/components/slab'
 
 export type SocialLink = {
   label: string
@@ -46,31 +46,29 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  name: 'Your Name',
-  firstName: 'Your Name',
-  handle: '@yourhandle',
-  role: 'PLACEHOLDER - your title',
-  avatarSrc: '/avatar.svg',
-  verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',
-  email: 'you@example.com',
-  location: 'PLACEHOLDER - your city or timezone',
-  // Pick any icon from https://phosphoricons.com and import it above.
+  name: 'Joven Cueto, MSBA',
+  firstName: 'Joven',
+  handle: '@jovencueto',
+  role: 'Vice President, Blue Harbor Group',
+  avatarSrc: '/photos/joven-headshot.webp',
+  verifiedLabel: 'Employee of the Year 2025 - Blue Harbor Media',
+  email: 'joveninabox@gmail.com',
+  location: 'Taguig City, Metro Manila, PH',
   stats: [
-    { value: '0 yrs', label: 'PLACEHOLDER', Icon: Briefcase },
-    { value: '#000', label: 'PLACEHOLDER', Icon: SealCheck },
-    { value: 'GMT+0', label: 'PLACEHOLDER', Icon: Clock },
+    { value: '9 yrs', label: 'Digital marketing', Icon: Briefcase },
+    { value: 'AI', label: 'Automation', Icon: Robot },
+    { value: 'SEO', label: 'AEO · GEO', Icon: MagnifyingGlass },
   ],
   // The intro types this line, then flies it into the Home headline.
-  // Keep it short: two halves, 5-8 words total.
-  displayName: { line1: 'Your headline here.', line2: 'Keep it short.' },
+  displayName: { line1: 'Marketing that sells.', line2: 'Growth that lasts.' },
   hero: {
-    body: 'PLACEHOLDER - one line on what you do and who you do it for.',
-    portraitSrc: '/avatar.svg',
-    portraitAlt: 'Portrait placeholder',
+    body: 'I build growth systems - SEO, AEO, GEO, AI automation and paid media - wired straight into sales, so marketing turns into closed deals, not just leads.',
+    portraitSrc: '/photos/joven-office.webp',
+    portraitAlt: 'Joven Cueto at his desk',
   },
   socials: [
-    { label: 'Facebook profile', href: '#', iconPath: '/icons/facebook.svg' },
-    { label: 'LinkedIn profile', href: '#', iconPath: '/icons/linkedin.svg' },
-    { label: 'Discord profile', href: '#', iconPath: '/icons/discord.svg' },
+    { label: 'LinkedIn profile', href: 'https://www.linkedin.com/in/joven-cueto-msba-779a88167/', iconPath: '/icons/linkedin.svg' },
+    { label: 'Facebook profile', href: 'https://www.facebook.com/profile.php?id=100001292387099', iconPath: '/icons/facebook.svg' },
+    { label: 'TikTok profile', href: 'https://www.tiktok.com/@joven.cueto', iconPath: '/icons/tiktok.svg' },
   ],
 }

@@ -224,7 +224,7 @@
 /* High contrast: the muted grey climbs to near-ink and hairlines darken. */
 :root[data-a11y-contrast='true'] {
   --muted: #2A3550;
-  --line: rgba(11, 30, 63, 0.4);
+  --line: rgba(10, 42, 92, 0.4);
   --orange-ink: #9A3D06;
 }
 :root[data-a11y-contrast='true'][data-theme='dark'] {

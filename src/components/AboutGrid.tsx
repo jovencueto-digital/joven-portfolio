@@ -146,8 +146,8 @@ export default function AboutGrid() {
 
         <div className="agrid__portrait">
           <img
-            src="/avatar.svg"
-            alt="Portrait placeholder"
+            src="/photos/joven-laptop.webp"
+            alt="Joven Cueto working at his laptop"
             loading="eager"
             decoding="async"
             width={400}
