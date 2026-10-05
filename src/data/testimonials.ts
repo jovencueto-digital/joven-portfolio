@@ -37,7 +37,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      'In a short period of time as Chief Marketing Officer, Joven helped our startup gauge our target clients, create campaigns for the business and provide solutions to our clients.',
+      'In a short period of time as Marketing Director, Joven helped our startup gauge our target clients, create campaigns for the business and provide solutions to our clients.',
     name: 'Ashbed LA',
     company: 'Summitly',
     work: 'Marketing leadership',
