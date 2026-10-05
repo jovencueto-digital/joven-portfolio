@@ -1,26 +1,44 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from '@/components/slab'
+import { ArrowUpRight, Quotes } from '@/components/slab'
 import { cases } from '@/data/cases'
+import { testimonials, initials } from '@/data/testimonials'
 
 /**
- * Client Results - stands in for testimonials until real client quotes are
- * added. Every card is a real result: the numbers come from the screenshots
- * in public/work/ (see src/data/cases.ts). Do not add invented quotes here.
+ * Testimonials & Results. Quotes come from src/data/testimonials.ts (real
+ * client words only); results from src/data/cases.ts (real screenshots).
  */
 export default function ResultsGrid() {
   return (
     <section className="pgrid rgrid" aria-labelledby="results-title">
       <header className="pgrid__head">
-        <span className="pgrid__eyebrow">Client Results</span>
+        <span className="pgrid__eyebrow">Testimonials & Results</span>
         <h1 className="pgrid__title" id="results-title">
-          The numbers speak first.
+          What clients say. What the numbers say.
         </h1>
         <p className="pgrid__lede">
-          Results pulled straight from the ad accounts and CRMs I run. Client names are withheld where agreements require it.
+          Words from the people I’ve worked with, and results pulled straight from the ad accounts and CRMs I run.
         </p>
       </header>
 
       <div className="home__glass rgrid__glass">
+        <ul className="tgrid" role="list">
+          {testimonials.map((t) => (
+            <li key={t.name} className="tgrid__card">
+              <Quotes size={22} weight="fill" className="tgrid__mark" aria-hidden="true" />
+              <blockquote className="tgrid__quote">{t.quote}</blockquote>
+              <span className="tgrid__who">
+                <span className="tgrid__avatar" aria-hidden="true">{initials(t.name)}</span>
+                <span>
+                  <b>{t.name}</b>
+                  <span className="tgrid__role">{t.role ? `${t.role}, ` : ''}{t.company}</span>
+                </span>
+              </span>
+              <span className="tgrid__work">{t.work}</span>
+            </li>
+          ))}
+        </ul>
+
+        <h2 className="rgrid__h2">Results</h2>
         <ul className="rgrid__list" role="list">
           {cases.map((c) => (
             <li key={c.id} className="rgrid__card">

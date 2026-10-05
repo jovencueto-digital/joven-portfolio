@@ -633,3 +633,37 @@
   margin-top: 16px; padding: 10px 16px; border-radius: var(--radius-pill);
   background: var(--navy); color: var(--cream); font-weight: 600; font-size: 14px; text-decoration: none;
 }
+
+/* ---------- Testimonials (ResultsGrid.tsx) ---------- */
+.tgrid {
+  list-style: none; margin: 0 0 8px; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.tgrid__card {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 22px;
+  border-radius: var(--radius-card);
+  background: var(--white);
+  box-shadow: inset 0 0 0 1px var(--line), var(--shadow-soft);
+}
+.tgrid__card:first-child { grid-column: 1 / -1; background: var(--panel-dark); }
+.tgrid__card:first-child .tgrid__quote { color: #F3F8FB; font-size: clamp(17px, 1.5vw, 21px); }
+.tgrid__card:first-child .tgrid__who b { color: #F3F8FB; }
+.tgrid__card:first-child .tgrid__role { color: rgba(243, 248, 251, 0.7); }
+.tgrid__mark { color: var(--orange); }
+.tgrid__quote { margin: 0; color: var(--navy); line-height: 1.6; font-size: 15px; flex: 1; }
+.tgrid__who { display: flex; align-items: center; gap: 12px; }
+.tgrid__who b { display: block; color: var(--navy); font-size: 14px; }
+.tgrid__avatar {
+  flex: none; width: 40px; height: 40px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--orange); color: #fff; font-weight: 700; font-size: 14px;
+}
+.tgrid__role { display: block; font-size: 12.5px; color: var(--muted); }
+.tgrid__work { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange-ink); }
+.tgrid__card:first-child .tgrid__work { color: #4FD6D0; }
+.rgrid__h2 { margin: 28px 0 14px; font-size: clamp(22px, 2vw, 28px); color: var(--navy); }
+
+@media (max-width: 700px) { .tgrid { grid-template-columns: 1fr; } }

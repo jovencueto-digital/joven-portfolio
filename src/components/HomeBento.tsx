@@ -21,6 +21,7 @@ import {
   Funnel as FunnelIcon,
 } from '@/components/slab'
 import { cases } from '@/data/cases'
+import { testimonials } from '@/data/testimonials'
 import { profile } from '@/data/profile'
 
 /**
@@ -43,7 +44,7 @@ export const OFFERS = [
   { Icon: Compass, title: 'Growth Strategy', note: 'Marketing and sales run as one revenue team' },
 ] as const
 
-const RESULTS = cases.slice(0, 6).map((c) => ({ name: c.metrics[0].value + ' ' + c.metrics[0].label.toLowerCase(), role: c.title, work: c.kicker }))
+const REVIEWS = testimonials.map((t) => ({ name: t.name, role: `“${t.quote.split('. ')[0].replace(/\.$/, '')}.”`, work: t.company }))
 
 // Three photos of you, fanned. Small copies are fine - the fan shows them under 100px.
 const PHOTOS = [profile.avatarSrc, '/photos/joven-office.webp', '/photos/joven-laptop.webp']
@@ -169,13 +170,13 @@ export default function HomeBento() {
 
       {/* Testimonials: client cards drifting up a clipped column. */}
       <Link to="/results" className="bento__card bento__card--quotes">
-        <CardHead Icon={Quotes} title="Client Results" desc="Numbers straight from the ad accounts." />
+        <CardHead Icon={Quotes} title="Testimonials" desc="What clients and partners say." />
         <div className="bento__media bento__reviews" aria-hidden="true">
           <div className="bento__reviews-track">
-            {[...RESULTS, ...RESULTS].map((c, i) => (
+            {[...REVIEWS, ...REVIEWS].map((c, i) => (
               <span key={i} className="bento__review">
                 <span className="bento__review-top">
-                  <ChartLineUp size={14} weight="fill" />
+                  <Quotes size={14} weight="fill" />
                   <b>{c.name}</b>
                 </span>
                 <span className="bento__review-role">{c.role}</span>

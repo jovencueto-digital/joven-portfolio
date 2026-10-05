@@ -552,3 +552,4 @@
   .tabbar { left: 10px; right: 10px; height: 62px; }
   .tabbar__tab { font-size: 10px; }
 }
+.hproof--quote .hproof__title { font-size: 15px; line-height: 1.55; font-weight: 500; }

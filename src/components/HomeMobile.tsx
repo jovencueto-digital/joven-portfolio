@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { SealCheck, CaretRight, Stack, ChartLineUp } from '@/components/slab'
 import { profile } from '@/data/profile'
+import { testimonials } from '@/data/testimonials'
 import QuickMenu from './QuickMenu'
 
 /**
@@ -49,7 +50,7 @@ export function HomeStats() {
 const TILES = [
   { n: '01', label: 'Projects', to: '/projects', title: 'Real campaigns. Real numbers.', desc: 'Meta and Google Ads, CRM and AI results.', img: '/work/meta-funding.webp' },
   { n: '02', label: 'Services', to: '/services', title: 'Growth systems, built end to end.', desc: 'Ads, SEO, AI automation and CRM.', Icon: Stack },
-  { n: '03', label: 'Results', to: '/results', title: 'The numbers speak first.', desc: '807 leads, 1,104% ROAS, 233K clicks.', Icon: ChartLineUp, accent: true },
+  { n: '03', label: 'Testimonials', to: '/results', title: 'Testimonials & results', desc: 'What clients say, and the numbers behind it.', Icon: ChartLineUp, accent: true },
   { n: '04', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: '9 years turning marketing into revenue.', img: '/photos/joven-office.webp' },
 ] as const
 
@@ -82,18 +83,15 @@ export function HomeExplore() {
       <div className="hsec">
         <h2 className="hsec__title">
           <Link to="/results" className="hsec__link">
-            Client results
+            What clients say
             <CaretRight size={16} weight="bold" aria-hidden="true" />
           </Link>
         </h2>
       </div>
-      <Link to="/results" className="hproof" aria-label="Client result: 807 business-funding leads at $12.38 each">
-        <span className="hproof__stage">
-          <img src="/work/meta-funding.webp" alt="" loading="lazy" style={{ objectFit: 'cover', objectPosition: 'left top' }} />
-        </span>
+      <Link to="/results" className="hproof hproof--quote" aria-label={`Testimonial from ${testimonials[0].name}`}>
         <span className="hproof__copy">
-          <span className="hproof__title">807 business-funding leads at $12.38 each</span>
-          <span className="hproof__meta">Blue Harbor Funding · Meta Ads</span>
+          <span className="hproof__title">“{testimonials[0].quote}”</span>
+          <span className="hproof__meta">{testimonials[0].name} · {testimonials[0].role}, {testimonials[0].company}</span>
         </span>
       </Link>
     </>
