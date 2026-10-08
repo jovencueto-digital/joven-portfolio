@@ -7,6 +7,7 @@ import {
   FolderIcon,
   StackIcon,
   StarIcon,
+  FilesIcon,
   UserIcon,
   MessageIcon,
 } from './RailIcons'
@@ -28,6 +29,7 @@ export const RAIL_LINKS = [
   { label: 'Home', to: '/', Icon: HomeIcon },
   { label: 'Projects', to: '/projects', Icon: FolderIcon },
   { label: 'Services', to: '/services', Icon: StackIcon },
+  { label: 'Reports & Case Studies', to: '/reports', Icon: FilesIcon },
   { label: 'Testimonials', to: '/results', Icon: StarIcon },
   { label: 'About', to: '/about', Icon: UserIcon },
   { label: 'FAQs / Contact', to: '/contact', Icon: MessageIcon },

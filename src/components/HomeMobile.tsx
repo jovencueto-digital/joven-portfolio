@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { SealCheck, CaretRight, Stack, ChartLineUp } from '@/components/slab'
+import { SealCheck, CaretRight, Stack, ChartLineUp, Files } from '@/components/slab'
 import { profile } from '@/data/profile'
 import { testimonials } from '@/data/testimonials'
 import QuickMenu from './QuickMenu'
@@ -51,7 +51,8 @@ const TILES = [
   { n: '01', label: 'Projects', to: '/projects', title: 'Real campaigns. Real numbers.', desc: 'Meta and Google Ads, CRM and AI results.', img: '/work/meta-funding.webp' },
   { n: '02', label: 'Services', to: '/services', title: 'Growth systems, built end to end.', desc: 'ChatGPT Ads, paid ads, SEO, AI automation and CRM.', Icon: Stack },
   { n: '03', label: 'Testimonials', to: '/results', title: 'Testimonials & results', desc: 'What clients say, and the numbers behind it.', Icon: ChartLineUp, accent: true },
-  { n: '04', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: '9 years turning marketing into revenue.', img: '/photos/joven-office.webp' },
+  { n: '04', label: 'Reports', to: '/reports', title: 'The work behind the results.', desc: 'Audits, strategies and reports I wrote.', Icon: Files },
+  { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: '9 years turning marketing into revenue.', img: '/photos/joven-office.webp' },
 ] as const
 
 export function HomeExplore() {

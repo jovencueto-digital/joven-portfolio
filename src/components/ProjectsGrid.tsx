@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom'
 import { Fragment, useCallback, useEffect, useRef, useState, type ComponentType, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { ArrowUpRight, X, CursorClick, ChartLineUp, AddressBook, Robot, MagnifyingGlass, Phone, FlowArrow, Brain, Lightning, ChatCircleDots, Funnel as FunnelIcon } from '@/components/slab'
+import { ArrowUpRight, X, CursorClick, Files, ChartLineUp, AddressBook, Robot, MagnifyingGlass, Phone, FlowArrow, Brain, Lightning, ChatCircleDots, Funnel as FunnelIcon } from '@/components/slab'
 import CaseStudyPanel from './CaseStudy'
 import { cases, caseById, type CaseStudy } from '@/data/cases'
 import { useIsPhone } from '@/hooks/useMediaQuery'
@@ -280,6 +281,10 @@ export default function ProjectsGrid() {
           Real campaigns. Real numbers.
         </h1>
         <p className="pgrid__lede">Results from my ad accounts, CRMs and automations. Open a card to see the screenshots and what I did.</p>
+        <Link to="/reports" className="intro-btn" style={{ marginTop: 10 }}>
+          <span className="intro-btn__icon" aria-hidden="true"><Files size={14} weight="fill" /></span>
+          Read my reports & case studies
+        </Link>
       </header>
 
       {phone && (
