@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Joven Cueto intro</title>
+<style>
+@font-face { font-family: P; font-weight: 400; src: url(assets/poppins-latin-400-normal.woff2); }
+@font-face { font-family: P; font-weight: 500; src: url(assets/poppins-latin-500-normal.woff2); }
+@font-face { font-family: P; font-weight: 600; src: url(assets/poppins-latin-600-normal.woff2); }
+@font-face { font-family: P; font-weight: 700; src: url(assets/poppins-latin-700-normal.woff2); }
+@font-face { font-family: P; font-weight: 800; src: url(assets/poppins-latin-800-normal.woff2); }
+:root {
+  --ink: #051326; --navy: #0A2A5C; --teal: #0FA3A0; --aqua: #4FD6D0; --white: #F3F8FB; --muted: rgba(243,248,251,.68);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); font-family: P, sans-serif; color: var(--white); }
+#stage { position: absolute; inset: 0; overflow: hidden;
+  background: radial-gradient(1200px 800px at 85% 10%, #0d3b6e 0%, transparent 60%), radial-gradient(900px 700px at 0% 100%, #063a44 0%, transparent 60%), var(--ink); }
+.rings { position: absolute; inset: 0; }
+.rings circle { fill: none; stroke: rgba(79,214,208,.10); stroke-width: 1.5; }
+.scene { position: absolute; inset: 0; opacity: 0; }
+.a { will-change: transform, opacity; }
+.eyebrow { font-size: 26px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--aqua); }
+.h1 { font-size: 132px; font-weight: 800; letter-spacing: -.035em; line-height: 1; }
+.h2 { font-size: 84px; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+.lede { font-size: 34px; font-weight: 400; color: var(--muted); line-height: 1.45; }
+.teal { color: var(--aqua); }
+.bar { height: 6px; background: linear-gradient(90deg, var(--teal), var(--aqua)); border-radius: 6px; transform-origin: left center; }
+
+/* S1 */
+#s1 .copy { position: absolute; left: 150px; top: 330px; width: 1000px; }
+#s1 .copy .h1 { margin: 22px 0 28px; }
+#s1 .portrait { position: absolute; right: 190px; top: 210px; width: 600px; height: 600px; border-radius: 50%; overflow: hidden;
+  box-shadow: 0 0 0 10px rgba(15,163,160,.35), 0 0 0 22px rgba(15,163,160,.12), 0 60px 120px -30px rgba(0,0,0,.7); background: #fff; }
+#s1 .portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+/* S2 */
+.full { position: absolute; inset: 0; }
+.full img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+.shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,19,38,.96) 0%, rgba(5,19,38,.85) 38%, rgba(5,19,38,.15) 75%); }
+#s2 .copy { position: absolute; left: 150px; top: 270px; width: 900px; }
+.big { font-size: 260px; font-weight: 800; letter-spacing: -.05em; line-height: .9; color: var(--aqua); }
+#s2 .big span { font-size: 90px; letter-spacing: -.02em; color: var(--white); margin-left: 18px; }
+#s2 .h2 { font-size: 70px; margin: 26px 0 30px; }
+.pill { display: inline-flex; align-items: center; gap: 14px; padding: 16px 28px; border-radius: 999px; background: rgba(15,163,160,.16); border: 1.5px solid rgba(79,214,208,.45); font-size: 26px; font-weight: 600; }
+
+/* S3 */
+#s3 .head { position: absolute; left: 150px; top: 120px; }
+#s3 .head .h2 { margin-top: 16px; }
+.cards { position: absolute; left: 150px; right: 150px; top: 400px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
+.card { background: rgba(243,248,251,.06); border: 1.5px solid rgba(243,248,251,.14); border-radius: 30px; padding: 40px 36px; height: 420px; display: flex; flex-direction: column; }
+.card .n { font-size: 22px; font-weight: 700; color: var(--aqua); letter-spacing: .1em; }
+.card h3 { font-size: 42px; font-weight: 700; margin: 18px 0 14px; line-height: 1.1; }
+.card p { font-size: 22px; color: var(--muted); line-height: 1.45; flex: 1; }
+.logos { display: flex; gap: 12px; }
+.logos span { width: 62px; height: 62px; border-radius: 16px; background: #fff; display: grid; place-items: center; }
+.logos img { width: 36px; height: 36px; object-fit: contain; }
+.flow { position: absolute; left: 0; right: 0; bottom: 92px; text-align: center; font-size: 40px; font-weight: 700; letter-spacing: -.01em; }
+.flow b { color: var(--aqua); }
+
+/* S4 results */
+.res { position: absolute; inset: 0; opacity: 0; }
+.res .copy { position: absolute; left: 150px; top: 250px; width: 760px; }
+.res .big { font-size: var(--bs, 230px); }
+.res .label { font-size: 46px; font-weight: 700; margin: 8px 0 26px; }
+.res .meta { font-size: 28px; color: var(--muted); line-height: 1.6; }
+.res .meta b { color: var(--white); font-weight: 600; }
+.shot { position: absolute; right: 110px; top: 210px; width: 900px; border-radius: 22px; overflow: hidden; background: #fff;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.15), 0 70px 140px -40px rgba(0,0,0,.85); }
+.shot img { display: block; width: 100%; }
+.shot .chrome { height: 42px; background: #EEF3F7; display: flex; align-items: center; gap: 9px; padding: 0 18px; }
+.chrome i { width: 13px; height: 13px; border-radius: 50%; display: block; }
+.chrome i:nth-child(1) { background: #ff5f57; } .chrome i:nth-child(2) { background: #febc2e; } .chrome i:nth-child(3) { background: #28c840; }
+.tag { position: absolute; left: 150px; top: 150px; }
+
+/* S5 */
+#s5 .head { position: absolute; left: 150px; top: 130px; width: 640px; }
+#s5 .head .h2 { margin: 18px 0 30px; }
+#s5 ul { list-style: none; }
+#s5 li { font-size: 30px; margin-bottom: 22px; display: flex; gap: 18px; align-items: center; }
+#s5 li::before { content: ''; width: 16px; height: 16px; border-radius: 50%; background: var(--aqua); flex: none; box-shadow: 0 0 0 6px rgba(79,214,208,.18); }
+#s5 .shot { width: 880px; }
+#s5 .shotA { top: 120px; right: 130px; width: 620px; }
+#s5 .shotB { top: 470px; right: 90px; width: 900px; }
+
+/* S6 testimonial */
+#s6 .q { position: absolute; left: 220px; right: 220px; top: 230px; }
+#s6 .mark { font-size: 260px; line-height: .6; color: var(--teal); font-weight: 800; height: 120px; }
+#s6 blockquote { font-size: 64px; font-weight: 600; line-height: 1.3; letter-spacing: -.015em; }
+#s6 .who { margin-top: 56px; display: flex; align-items: center; gap: 24px; }
+.av { width: 92px; height: 92px; border-radius: 50%; background: var(--teal); display: grid; place-items: center; font-size: 34px; font-weight: 700; }
+#s6 .who b { display: block; font-size: 34px; }
+#s6 .who span { font-size: 26px; color: var(--muted); }
+
+/* S7 tools */
+#s7 .head { position: absolute; left: 0; right: 0; top: 150px; text-align: center; }
+#s7 .head .h2 { margin-top: 16px; }
+.grid { position: absolute; left: 270px; right: 270px; top: 430px; display: grid; grid-template-columns: repeat(8, 1fr); gap: 26px 26px; }
+.tool { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.tool span { width: 120px; height: 120px; border-radius: 30px; background: #fff; display: grid; place-items: center; box-shadow: 0 20px 40px -20px rgba(0,0,0,.6); }
+.tool img { width: 66px; height: 66px; object-fit: contain; }
+.tool em { font-style: normal; font-size: 21px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+
+/* S8 CTA */
+#s8 .shade { background: linear-gradient(90deg, rgba(5,19,38,.97) 0%, rgba(5,19,38,.9) 45%, rgba(5,19,38,.35) 100%); }
+#s8 .copy { position: absolute; left: 150px; top: 240px; width: 1100px; }
+#s8 .h1 { font-size: 118px; margin: 24px 0 40px; }
+.cta { display: inline-flex; align-items: center; gap: 16px; padding: 26px 44px; border-radius: 999px; background: var(--teal); font-size: 34px; font-weight: 700; }
+.contact { margin-top: 44px; font-size: 30px; color: var(--muted); line-height: 1.7; }
+.contact b { color: var(--white); font-weight: 600; }
+.brand { position: absolute; left: 150px; bottom: 80px; font-size: 26px; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+.brand b { color: var(--white); }
+#progress { position: absolute; left: 0; bottom: 0; height: 6px; background: linear-gradient(90deg, var(--teal), var(--aqua)); width: 0; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg class="rings" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+    <g id="rings"></g>
+  </svg>
+
+  <!-- S1: hello -->
+  <section class="scene" id="s1" data-in="0" data-out="5.4">
+    <div class="copy">
+      <div class="eyebrow a" data-in=".5" data-fx="up">Hello, I’m</div>
+      <div class="h1 a" data-in=".9" data-fx="up">Joven Cueto.</div>
+      <div class="bar a" data-in="1.6" data-fx="grow" style="width:180px;margin-bottom:30px"></div>
+      <div class="lede a" data-in="2.0" data-fx="up">Digital Marketing &amp; Growth Strategist<br><span class="teal">Vice President, Blue Harbor Group</span></div>
+    </div>
+    <div class="portrait a" data-in=".7" data-fx="pop"><img src="assets/headshot.png" alt=""></div>
+  </section>
+
+  <!-- S2: 9 years -->
+  <section class="scene" id="s2" data-in="5" data-out="11">
+    <div class="full"><img src="assets/office-wide.jpg" data-kb="5,11.5,1.08,1.0,40,0" alt=""></div>
+    <div class="shade"></div>
+    <div class="copy">
+      <div class="big a" data-in="5.6" data-fx="up"><b data-count="9" data-cin="5.6" data-cdur="1.4">9</b><span>years</span></div>
+      <div class="h2 a" data-in="6.6" data-fx="up">turning marketing<br>into <span class="teal">revenue.</span></div>
+      <div class="pill a" data-in="7.6" data-fx="up">B2B &amp; B2C · US &amp; Asia · Marketing → Sales → Close</div>
+    </div>
+  </section>
+
+  <!-- S3: what I do -->
+  <section class="scene" id="s3" data-in="10.6" data-out="21">
+    <div class="head">
+      <div class="eyebrow a" data-in="11.0" data-fx="up">What I do</div>
+      <div class="h2 a" data-in="11.3" data-fx="up">Growth systems, built end to end.</div>
+    </div>
+    <div class="cards">
+      <div class="card a" data-in="12.2" data-fx="up">
+        <div class="n">01</div><h3>Paid Ads</h3><p>Meta and Google Ads built for qualified leads and ROAS.</p>
+        <div class="logos"><span><img src="assets/meta-color.svg"></span><span><img src="assets/googleads-color.svg"></span></div>
+      </div>
+      <div class="card a" data-in="12.7" data-fx="up">
+        <div class="n">02</div><h3>SEO · AEO · GEO</h3><p>Found on Google, in AI answers and in AI search.</p>
+        <div class="logos"><span><img src="assets/semrush-color.svg"></span><span><img src="assets/ahrefs-mark.svg"></span><span><img src="assets/screamingfrog-mark.svg"></span></div>
+      </div>
+      <div class="card a" data-in="13.2" data-fx="up">
+        <div class="n">03</div><h3>AI Automation</h3><p>Voice agents and workflows that work leads 24/7.</p>
+        <div class="logos"><span><img src="assets/n8n.svg"></span><span><img src="assets/claude-color.svg"></span><span><img src="assets/openai.svg"></span></div>
+      </div>
+      <div class="card a" data-in="13.7" data-fx="up">
+        <div class="n">04</div><h3>CRM &amp; Sales Systems</h3><p>One pipeline from first click to closed deal.</p>
+        <div class="logos"><span><img src="assets/gohighlevel.png"></span><span><img src="assets/salesforce-mark.svg"></span><span><img src="assets/hubspot-color.svg"></span></div>
+      </div>
+    </div>
+    <div class="flow a" data-in="16.2" data-fx="up"><b>Attract</b> &nbsp;→&nbsp; <b>Automate</b> &nbsp;→&nbsp; <b>Close</b></div>
+  </section>
+
+  <!-- S4: results -->
+  <div class="eyebrow tag a" data-in="21.2" data-out="35.6" data-fx="up">Real results</div>
+  <section class="res" id="r1" data-in="20.6" data-out="26">
+    <div class="copy">
+      <div class="big a" data-in="21.4" data-fx="up"><b data-count="807" data-cin="21.4" data-cdur="1.6">807</b></div>
+      <div class="label a" data-in="21.9" data-fx="up">business-funding leads</div>
+      <div class="meta a" data-in="22.4" data-fx="up"><b>$12.38</b> per lead · Meta Ads<br><b>106.8K</b> impressions · US market</div>
+    </div>
+    <div class="shot a" data-in="21.7" data-fx="right" style="width:980px;top:300px"><div class="chrome"><i></i><i></i><i></i></div><img src="assets/meta-funding.webp"></div>
+  </section>
+  <section class="res" id="r2" data-in="25.6" data-out="31" style="--bs:200px">
+    <div class="copy">
+      <div class="big a" data-in="26.2" data-fx="up"><b data-count="1104" data-cin="26.2" data-cdur="1.6" data-suffix="%">1,104%</b></div>
+      <div class="label a" data-in="26.7" data-fx="up">return on ad spend</div>
+      <div class="meta a" data-in="27.2" data-fx="up"><b>183</b> conversions · <b>$4.21K</b> value<br>from <b>$381</b> on Google Ads</div>
+    </div>
+    <div class="shot a" data-in="26.5" data-fx="right"><div class="chrome"><i></i><i></i><i></i></div><img src="assets/gads-roas.webp"></div>
+  </section>
+  <section class="res" id="r3" data-in="30.6" data-out="36">
+    <div class="copy">
+      <div class="big a" data-in="31.2" data-fx="up"><b data-count="233" data-cin="31.2" data-cdur="1.6" data-suffix="K">233K</b></div>
+      <div class="label a" data-in="31.7" data-fx="up">clicks at $0.41 each</div>
+      <div class="meta a" data-in="32.2" data-fx="up"><b>35.2M</b> impressions<br><b>$94.2K</b> in managed spend</div>
+    </div>
+    <div class="shot a" data-in="31.5" data-fx="right"><div class="chrome"><i></i><i></i><i></i></div><img src="assets/gads-scale.webp"></div>
+  </section>
+
+  <!-- S5: AI systems -->
+  <section class="scene" id="s5" data-in="35.6" data-out="42">
+    <div class="head">
+      <div class="eyebrow a" data-in="36.0" data-fx="up">AI &amp; automation</div>
+      <div class="h2 a" data-in="36.3" data-fx="up">Systems that work <span class="teal">24/7.</span></div>
+      <ul>
+        <li class="a" data-in="37.2" data-fx="left">AI voice agent on phone + web</li>
+        <li class="a" data-in="37.6" data-fx="left">Leads routed to the right rep</li>
+        <li class="a" data-in="38.0" data-fx="left">95,680 contacts, one CRM</li>
+      </ul>
+    </div>
+    <div class="shot shotA a" data-in="36.8" data-fx="right"><div class="chrome"><i></i><i></i><i></i></div><img src="assets/ai-voice-agent.webp"></div>
+    <div class="shot shotB a" data-in="37.4" data-fx="right"><div class="chrome"><i></i><i></i><i></i></div><img src="assets/workflow-lead-magnet.webp"></div>
+  </section>
+
+  <!-- S6: testimonial -->
+  <section class="scene" id="s6" data-in="41.6" data-out="49">
+    <div class="q">
+      <div class="mark a" data-in="42.0" data-fx="pop">“</div>
+      <blockquote class="a" data-in="42.4" data-fx="up">Joven is a GOAT. He single-handedly created campaigns and closed deals… From marketing to sales and closing, he did it all at once.</blockquote>
+      <div class="who a" data-in="43.4" data-fx="up"><div class="av">JG</div><div><b>John Gaulin</b><span>CEO &amp; Founder, Blue Harbor Capital Holdings</span></div></div>
+    </div>
+  </section>
+
+  <!-- S7: tools -->
+  <section class="scene" id="s7" data-in="48.6" data-out="54.2">
+    <div class="head">
+      <div class="eyebrow a" data-in="49.0" data-fx="up">Daily drivers</div>
+      <div class="h2 a" data-in="49.2" data-fx="up">Tools I work with</div>
+    </div>
+    <div class="grid" id="tools"></div>
+  </section>
+
+  <!-- S8: CTA -->
+  <section class="scene" id="s8" data-in="53.8" data-out="99">
+    <div class="full"><img src="assets/laptop-wide.jpg" data-kb="53.8,60,1.0,1.07,0,-30" alt=""></div>
+    <div class="shade"></div>
+    <div class="copy">
+      <div class="eyebrow a" data-in="54.4" data-fx="up">Ready when you are</div>
+      <div class="h1 a" data-in="54.7" data-fx="up">Let’s build your<br><span class="teal">growth system.</span></div>
+      <div class="cta a" data-in="55.6" data-fx="pop">Get in touch →</div>
+      <div class="contact a" data-in="56.2" data-fx="up"><b>joveninabox@gmail.com</b><br>@jovencueto · LinkedIn · Facebook · TikTok</div>
+    </div>
+    <div class="brand a" data-in="56.6" data-fx="fade"><b>Joven Cueto</b> · Taguig City, Metro Manila</div>
+  </section>
+
+  <div id="progress"></div>
+  <div id="black" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
+</div>
+
+<script>
+const DURATION = 60
+const TOOLS = [
+  ['GoHighLevel','gohighlevel.png'],['Salesforce','salesforce-mark.svg'],['HubSpot','hubspot-color.svg'],['Meta Ads','meta-color.svg'],
+  ['Google Ads','googleads-color.svg'],['WordPress','wordpress-color.svg'],['Wix','wix.svg'],['Semrush','semrush-color.svg'],
+  ['Ahrefs','ahrefs-mark.svg'],['Screaming Frog','screamingfrog-mark.svg'],['n8n','n8n.svg'],['Claude','claude-color.svg'],
+  ['OpenAI','openai.svg'],['Mailchimp','mailchimp.svg'],['ActiveCampaign','activecampaign-mark.svg'],['Monday.com','monday-mark.svg'],
+]
+const grid = document.getElementById('tools')
+TOOLS.forEach(([n, f], i) => {
+  const d = document.createElement('div')
+  d.className = 'tool a'; d.dataset.in = (49.8 + i * 0.12).toFixed(2); d.dataset.fx = 'pop'
+  d.innerHTML = `<span><img src="assets/${f}"></span><em>${n}</em>`
+  grid.appendChild(d)
+})
+const rings = document.getElementById('rings')
+for (let i = 0; i < 9; i++) {
+  const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
+  c.setAttribute('cx', 1560); c.setAttribute('cy', 260); c.dataset.i = i
+  rings.appendChild(c)
+}
+
+const clamp = (x) => Math.max(0, Math.min(1, x))
+const easeOut = (x) => 1 - Math.pow(1 - x, 3)
+const easeInOut = (x) => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2
+const els = [...document.querySelectorAll('.a')]
+const scenes = [...document.querySelectorAll('.scene, .res')]
+const counts = [...document.querySelectorAll('[data-count]')]
+const kbs = [...document.querySelectorAll('[data-kb]')]
+const fmt = (n) => n.toLocaleString('en-US')
+
+window.setTime = function (t) {
+  for (const s of scenes) {
+    const i = +s.dataset.in, o = +s.dataset.out
+    const op = clamp((t - i) / .5) * (1 - clamp((t - o) / .5))
+    s.style.opacity = op
+    s.style.visibility = op > 0 ? 'visible' : 'hidden'
+  }
+  for (const e of els) {
+    const i = +e.dataset.in, o = e.dataset.out ? +e.dataset.out : 1e9
+    const p = easeOut(clamp((t - i) / .8))
+    const q = clamp((t - o) / .5)
+    const fx = e.dataset.fx || 'up'
+    let tr = ''
+    if (fx === 'up') tr = `translateY(${(1 - p) * 60}px)`
+    else if (fx === 'left') tr = `translateX(${(1 - p) * -60}px)`
+    else if (fx === 'right') tr = `translateX(${(1 - p) * 140}px) rotate(${(1 - p) * 2}deg)`
+    else if (fx === 'pop') tr = `scale(${.82 + .18 * p})`
+    else if (fx === 'grow') tr = `scaleX(${p})`
+    e.style.transform = tr
+    e.style.opacity = fx === 'grow' ? 1 : p * (1 - q)
+  }
+  for (const c of counts) {
+    const p = easeOut(clamp((t - +c.dataset.cin) / +c.dataset.cdur))
+    c.textContent = fmt(Math.round(+c.dataset.count * p)) + (c.dataset.suffix || '')
+  }
+  for (const k of kbs) {
+    const [a, b, s0, s1, x0, x1] = k.dataset.kb.split(',').map(Number)
+    const p = easeInOut(clamp((t - a) / (b - a)))
+    k.style.transform = `scale(${s0 + (s1 - s0) * p}) translateX(${x0 + (x1 - x0) * p}px)`
+  }
+  for (const c of rings.children) {
+    const i = +c.dataset.i
+    c.setAttribute('r', 120 + i * 120 + Math.sin(t * .6 + i) * 14)
+    c.setAttribute('cx', 1560 - t * 4)
+  }
+  document.getElementById('progress').style.width = (t / DURATION * 100) + '%'
+  document.getElementById('black').style.opacity = clamp((t - 59.2) / .8)
+}
+window.DURATION = DURATION
+setTime(+(new URLSearchParams(location.search).get('t') || 0))
+</script>
+</body>
+</html>

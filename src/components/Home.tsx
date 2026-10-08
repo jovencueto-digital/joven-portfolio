@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import IntroButton from './IntroPlayer'
 import { ArrowUpRight } from '@/components/slab'
 import { profile } from '@/data/profile'
 import ToolsMarquee from './ToolsMarquee'
@@ -53,6 +54,7 @@ export default function Home() {
         </div>
 
         <p className="home__lede">{hero.body}</p>
+        <IntroButton />
         {phone && <HomeStats />}
       </div>
 
