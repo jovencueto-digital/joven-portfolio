@@ -708,3 +708,4 @@
 }
 .vplayer__btn--primary { background: #0FA3A0; border-color: #0FA3A0; }
 @media (max-width: 700px) { .vplayer { padding: 64px 12px 12px; } .vplayer__end { inset: 0 0 44px; gap: 12px; } .vplayer__btn { padding: 9px 14px; font-size: 13px; } }
+.vplayer__credit { margin: 0; font: 400 12px var(--font-display); color: rgba(243, 248, 251, 0.5); }

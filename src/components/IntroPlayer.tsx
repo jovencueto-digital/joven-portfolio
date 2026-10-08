@@ -104,6 +104,7 @@ function Player({ onClose }: { onClose: () => void }) {
             </button>
           ))}
         </nav>
+        <p className="vplayer__credit">Music: “Upbeat Disco Funk” by WavebeatsMusic</p>
       </div>
     </div>,
     document.body,
