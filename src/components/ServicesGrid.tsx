@@ -29,9 +29,9 @@ const STAGES: Stage[] = [
   {
     index: '01',
     label: 'Attract',
-    body: 'Paid ads, SEO, AEO and GEO put your offer in front of buyers on Google, social and AI search.',
+    body: 'ChatGPT Ads, paid ads, SEO, AEO and GEO put your offer in front of buyers on Google, social and inside AI.',
     Icon: MagnetStraight,
-    chips: ['Meta Ads', 'Google Ads', 'SEO', 'AEO · GEO'],
+    chips: ['ChatGPT Ads', 'Meta Ads', 'Google Ads', 'SEO', 'AEO · GEO'],
   },
   {
     index: '02',
@@ -78,6 +78,14 @@ type Service = {
 const SERVICES: Service[] = [
   {
     index: '01',
+    title: 'ChatGPT Ads',
+    description: 'Put your brand in front of buyers inside ChatGPT, with sponsored ads shown beneath its answers.',
+    chip: 'New channel',
+    logos: [OPENAI],
+    bullets: ['Ads Manager setup, billing and conversion tracking', 'CPC and CPM campaigns, bids and budget pacing', 'Ads written for conversational, high-intent searches'],
+  },
+  {
+    index: '02',
     title: 'Paid Ads',
     description: 'Meta and Google Ads campaigns built to bring in qualified leads at a cost you can scale.',
     chip: 'Leads · ROAS',
@@ -85,7 +93,7 @@ const SERVICES: Service[] = [
     bullets: ['Account setup and creative testing', 'Lead-form and conversion campaigns', 'Weekly cost-per-lead and ROAS reporting'],
   },
   {
-    index: '02',
+    index: '03',
     title: 'SEO · AEO · GEO',
     description: 'Get found on Google, in AI answers and in AI search engines like ChatGPT and Gemini.',
     chip: 'Organic growth',
@@ -93,7 +101,7 @@ const SERVICES: Service[] = [
     bullets: ['Technical, on-page and off-page SEO', 'Backlink and authority building', 'Content structured for AI answers'],
   },
   {
-    index: '03',
+    index: '04',
     title: 'AI Automation',
     description: 'AI voice agents, chat widgets and workflows that handle leads while your team sleeps.',
     chip: '24/7',
@@ -101,7 +109,7 @@ const SERVICES: Service[] = [
     bullets: ['AI voice and chat agents', 'n8n and GoHighLevel workflows', 'Lead qualifying and routing'],
   },
   {
-    index: '04',
+    index: '05',
     title: 'CRM & Sales Systems',
     description: 'One pipeline from first click to closed deal, set up in the CRM your team will actually use.',
     chip: 'Pipeline',
@@ -109,7 +117,7 @@ const SERVICES: Service[] = [
     bullets: ['GoHighLevel, HubSpot or Salesforce setup', 'Email and SMS follow-up sequences', 'Smart lists, tags and dashboards'],
   },
   {
-    index: '05',
+    index: '06',
     title: 'Growth Strategy',
     description: 'Marketing and sales leadership that aligns every campaign with revenue targets.',
     chip: 'Revenue',
@@ -142,7 +150,7 @@ export default function ServicesGrid() {
           Growth systems, built end to end.
         </h1>
         <p className="pgrid__lede">
-          Ads, search, AI automation and CRM - wired together so marketing turns into revenue.
+          ChatGPT Ads, paid ads, search, AI automation and CRM - wired together so marketing turns into revenue.
         </p>
       </header>
 
@@ -196,7 +204,7 @@ export default function ServicesGrid() {
                 <span className="bento__head">
                   <span className="sgrid__service-top">
                     <Marks logos={s.logos} />
-                    <span className="sgrid__service-index" aria-hidden="true">{s.index} / 05</span>
+                    <span className="sgrid__service-index" aria-hidden="true">{s.index} / {String(SERVICES.length).padStart(2, '0')}</span>
                   </span>
                   <span className="bento__title">{s.title}</span>
                   <span className="bento__desc">{s.description}</span>

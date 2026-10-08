@@ -9,7 +9,7 @@ export type QA = { q: string; a: string }
 export const FAQS: QA[] = [
   {
     q: 'What do you do?',
-    a: 'I build growth systems for B2B and B2C brands: Meta and Google Ads, SEO, AEO and GEO, AI automation, and CRM pipelines that hand qualified leads to sales.',
+    a: 'I build growth systems for B2B and B2C brands: ChatGPT Ads, Meta and Google Ads, SEO, AEO and GEO, AI automation, and CRM pipelines that hand qualified leads to sales.',
   },
   {
     q: 'Who do you work with?',

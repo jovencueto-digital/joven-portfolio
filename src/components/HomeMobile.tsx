@@ -49,7 +49,7 @@ export function HomeStats() {
 
 const TILES = [
   { n: '01', label: 'Projects', to: '/projects', title: 'Real campaigns. Real numbers.', desc: 'Meta and Google Ads, CRM and AI results.', img: '/work/meta-funding.webp' },
-  { n: '02', label: 'Services', to: '/services', title: 'Growth systems, built end to end.', desc: 'Ads, SEO, AI automation and CRM.', Icon: Stack },
+  { n: '02', label: 'Services', to: '/services', title: 'Growth systems, built end to end.', desc: 'ChatGPT Ads, paid ads, SEO, AI automation and CRM.', Icon: Stack },
   { n: '03', label: 'Testimonials', to: '/results', title: 'Testimonials & results', desc: 'What clients say, and the numbers behind it.', Icon: ChartLineUp, accent: true },
   { n: '04', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: '9 years turning marketing into revenue.', img: '/photos/joven-office.webp' },
 ] as const

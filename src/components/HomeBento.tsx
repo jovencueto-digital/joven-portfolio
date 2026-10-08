@@ -37,6 +37,7 @@ import { profile } from '@/data/profile'
 const PROJECT_SHOTS = cases.flatMap((c) => c.shots.map((x) => x.src))
 
 export const OFFERS = [
+  { Icon: ChatCircleDots, title: 'ChatGPT Ads', note: 'Sponsored ads inside ChatGPT answers' },
   { Icon: ChartLineUp, title: 'Paid Ads', note: 'Meta and Google Ads built for leads and ROAS' },
   { Icon: MagnifyingGlass, title: 'SEO · AEO · GEO', note: 'Rank on Google, AI answers and AI search' },
   { Icon: Lightning, title: 'AI Automation', note: 'Voice agents, n8n and CRM workflows' },
